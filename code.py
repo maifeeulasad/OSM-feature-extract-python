@@ -18,24 +18,29 @@ try:
     print(response)
     soup = BeautifulSoup(response.content, "html.parser")
     for table in soup.findAll("table"):
-        for td in table.findAll("td"):
-            if count%6 is 0:
-                key = td.find("a").contents[0].lstrip()
-                if key in features:
-                    pass
-                else:
-                    features[key]=[]
-            elif count%6 is 1:
-                try:
-                    content=td.find("a").contents[0].lstrip()
-                    print(key," --- ",content)
-                    features[key].append(content)
-                except Exception as ie:
-                    print(ie,"<<--encountered")
-                #print(content)
-            count+=1
-        print("------")
+        for tr in table.findAll("tr"):
+            perrow=len(tr.findAll("td"))
+            for td in tr.findAll("td"):
+                if count%perrow is 0:
+                    try:
+                        key = td.find("a").contents[0].lstrip()
+                        if key in features:
+                            pass
+                        else:
+                            features[key]=[]
+                    except Exception as ieu:
+                        print(ieu,"<<>>")
+                elif count%perrow is 1:
+                    try:
+                        content=td.find("a").contents[0].lstrip()
+                        print(key," --- ",content)
+                        features[key].append(content)
+                    except Exception as ie:
+                        print(ie,"<<--encountered")
+                count+=1
+            print("------")
 except Exception as oe:
     print(oe)
+    
 print(features)
 
