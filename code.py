@@ -10,7 +10,6 @@ perrow = 6
 features={}
 
 try:
-    count = 0
     key = ''
     session = FuturesSession()
     future = session.get(link)
@@ -20,6 +19,7 @@ try:
     for table in soup.findAll("table"):
         for tr in table.findAll("tr"):
             perrow=len(tr.findAll("td"))
+            count=0
             for td in tr.findAll("td"):
                 if count%perrow is 0:
                     try:
@@ -37,6 +37,8 @@ try:
                         features[key].append(content)
                     except Exception as ie:
                         print(ie,"<<--encountered")
+                else:
+                    break
                 count+=1
             print("------")
 except Exception as oe:
