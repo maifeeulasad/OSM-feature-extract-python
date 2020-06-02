@@ -2,6 +2,8 @@
 feature extractor like road,path,motorway all belongs to highway and so on, just helps to classify features
 
 
+For API like usage : [API - features](https://raw.githubusercontent.com/maifeeulasad/OSM-feature-extract-python/master/features.json). Use simple GET.
+
 Current result :
 ```
 {
